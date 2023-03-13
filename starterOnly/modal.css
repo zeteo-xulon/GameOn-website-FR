@@ -25,21 +25,14 @@ p {
   margin-bottom: 0;
   padding: 0.5vw;
 }
-
-img {
-  padding-right: 1rem;
-}
+img { padding-right: 1rem; }
 
 .topnav {
   overflow: hidden;
   margin: 3.5%;
 }
-.header-logo {
-    float: left;
-}
-.main-navbar {
-    float: right;
-}
+.header-logo { float: left; }
+.main-navbar { float: right; }
 .topnav a {
   float: left;
   display: block;
@@ -63,10 +56,7 @@ img {
   color: #ffffff;
   border-radius: 15px;
 }
-
-.topnav .icon {
-  display: none;
-}
+.topnav .icon { display: none; }
 
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
@@ -74,9 +64,6 @@ img {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -89,7 +76,6 @@ img {
     text-align: left;
   }
 }
-
 
 
  @media screen and (max-width: 540px) {
@@ -111,8 +97,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -127,9 +111,7 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
-  background: #3876ac;
-}
+.modal-btn:hover { background: #3876ac; }
 
 .footer {
   margin: 20px;
@@ -149,13 +131,8 @@ main {
   font-size: 16px;
 }
 
-.button:hover {
-  background: #3876ac;
-}
-
-.smFont {
-  font-size: 16px;
-}
+.button:hover { background: #3876ac; }
+.smFont { font-size: 16px; }
 
 .bground {
   display: none;
@@ -186,6 +163,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  height: 100%;
 }
 
 label {
@@ -269,16 +247,10 @@ input[data-error]::after {
   transition: 0.3s;
   opacity: 0;
 }
-.checkbox-input {
-  display: none;
-}
+.checkbox-input { display: none; }
 .checkbox-input:checked + .checkbox-label .checkbox-icon::after,
-.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
-  opacity: 1;
-}
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
-}
+.checkbox-input:checked + .checkbox2-label .checkbox-icon::after { opacity: 1; }
+.checkbox-input:checked + .checkbox2-label .checkbox-icon {  background: #279e7a; }
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
   border: 0;
@@ -315,14 +287,11 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
-  transform: rotate(45deg);
-}
-.close:after {
-  transform: rotate(-45deg);
-}
+.close:before { transform: rotate(45deg); }
+.close:after { transform: rotate(-45deg); }
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close-form {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -341,12 +310,8 @@ input[data-error]::after {
   font-weight: normal;
 }
 
-.custom-select select {
-  display: none;
-}
-.select-selected {
-  background-color: #fff;
-}
+.custom-select select { display: none; }
+.select-selected { background-color: #fff; }
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
@@ -391,9 +356,7 @@ input[data-error]::after {
 }
 
 /* Hide the items when the select box is closed: */
-.select-hide {
-  display: none;
-}
+.select-hide { display: none; }
 
 .select-items div:hover,
 .same-as-selected {
@@ -454,9 +417,7 @@ input[data-error]::after {
   margin: 0;
   margin-top: 59px;
 }
-.hero-img {
-  grid-column: span 8;
-}
+.hero-img { grid-column: span 8; }
 .hero-img img {
   width: 100%;
   height: 100%;
@@ -470,9 +431,7 @@ input[data-error]::after {
   margin: 60px 0 30px;
   font-weight: bolder;
 }
-.hero-section > .btn-signup {
-  display: none;
-}
+.hero-section > .btn-signup { display: none; }
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
@@ -488,12 +447,8 @@ footer {
     color: #000;
     padding: 20px;
   }
-  .hero-content::after {
-    content: unset;
-  }
-  .hero-content .btn-signup {
-    display: none;
-  }
+  .hero-content::after { content: unset; }
+  .hero-content .btn-signup { display: none; }
   .hero-headline {
     font-size: 4.5rem;
     white-space: normal;
@@ -526,4 +481,3 @@ footer {
     opacity: 1;
   }
 }
-
