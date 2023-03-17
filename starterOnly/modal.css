@@ -17,7 +17,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -414,6 +413,25 @@ input[data-error]::after {
 }
 .hero-section > .btn-signup { display: none; }
 
+
+.thanks-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+.end-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 85%;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
 /* =======================================================
                       FOOTER  
 ======================================================== */
@@ -470,7 +488,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+
   .topnav a.icon {
     float: right;
     display: block;
@@ -497,7 +515,6 @@ footer {
   img{
     width: 120px;
   }
-  .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
@@ -539,4 +556,12 @@ footer {
   to {
     opacity: 1;
   }
+}
+
+/* HIGH PRIORITY */
+.visible {
+  display: block;
+}
+.invisible{
+  display: none;
 }
