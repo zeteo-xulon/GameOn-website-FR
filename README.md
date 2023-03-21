@@ -1,6 +1,6 @@
 # Projet GameOn
 
-Le Projet gameOn est proposé par l'entreprise OpenClassrooms
+Le Projet gameOn est proposé par l'entreprise OpenClassrooms Lien du site si vous n'avez pas Docker sur votre machine : [site GameOn](https://zeteo-xulon.github.io/GameOn-website-FR/#)
 
 ## Installation avec Docker
 
