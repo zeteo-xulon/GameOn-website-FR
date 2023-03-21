@@ -37,7 +37,7 @@ window.addEventListener("click", (e) => {
 
 launchingPageCheck();
 
-// Functions
+// FUNCTIONS
 
 // Check if the condition to show the navbar are fulfilled, and show it if it is
 function showNav(){
