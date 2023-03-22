@@ -1,18 +1,13 @@
 // Import
-import { createThis } from "./utils.js";
-import { inputData } from "./data.js";
-import { checkboxData } from "./data.js";
-import { createInput } from "./utils.js";
-import { createCheckbox } from "./utils.js";
+import { createThis, createInput, createCheckbox } from "./utils.js";
+import { inputData, checkboxData } from "./data.js";
 
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalForm = document.querySelector(".modal-body");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
-const submitBtn = document.querySelector(".btn-submit");
 const navbarBtn = document.getElementById("navbarBtn");
 
 
@@ -68,7 +63,7 @@ function validate(e) {
     lastName: /^[a-zA-Z]{2,}$/,
     email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
     birthdate: /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/,
-    tournamentQuantity: /^[0-9]+$/
+    tournamentQuantity: /^(0?[0-9]|[1-9][0-9])$/,
   }
 
   const formObject = getValue();
@@ -123,20 +118,20 @@ function validate(e) {
  * }
 */
 function getValue() {
-  let firstName = document.getElementById("firstname").value !== null ? document.getElementById("firstname").value : "";
-  let lastName = document.getElementById("lastname").value !== null ? document.getElementById("lastname").value : "";
-  let email = document.getElementById("email").value !== null ? document.getElementById("email").value : "";
-  let birthdate = document.getElementById("birthdate").value !== null ? document.getElementById("birthdate").value : "";
-  let tournamentQuantity = document.getElementById("tournament-quantity").value !== null ? document.getElementById("tournament-quantity").value : "";
-  let location1 = document.getElementById("location1").checked;
-  let location2 = document.getElementById("location2").checked;
-  let location3 = document.getElementById("location3").checked;
-  let location4 = document.getElementById("location4").checked;
-  let location5 = document.getElementById("location5").checked;
-  let location6 = document.getElementById("location6").checked;
-  let checkbox1 = document.getElementById("checkbox1").checked;
-  let checkbox2 = document.getElementById("checkbox2").checked;
-  let objectForm = {
+  const firstName = document.getElementById("firstname").value !== null ? document.getElementById("firstname").value : "";
+  const lastName = document.getElementById("lastname").value !== null ? document.getElementById("lastname").value : "";
+  const email = document.getElementById("email").value !== null ? document.getElementById("email").value : "";
+  const birthdate = document.getElementById("birthdate").value !== null ? document.getElementById("birthdate").value : "";
+  const tournamentQuantity = document.getElementById("tournament-quantity").value !== null ? document.getElementById("tournament-quantity").value : "";
+  const location1 = document.getElementById("location1").checked;
+  const location2 = document.getElementById("location2").checked;
+  const location3 = document.getElementById("location3").checked;
+  const location4 = document.getElementById("location4").checked;
+  const location5 = document.getElementById("location5").checked;
+  const location6 = document.getElementById("location6").checked;
+  const checkbox1 = document.getElementById("checkbox1").checked;
+  const checkbox2 = document.getElementById("checkbox2").checked;
+  const objectForm = {
     firstName: firstName,
     lastName: lastName,
     email: email,
