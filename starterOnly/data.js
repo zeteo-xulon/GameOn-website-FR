@@ -52,7 +52,7 @@ export const inputData = [
       inputMinLength: "",
       inputRequired: false,
       inputMin: "0",
-      inputMax: "99"
+      inputMax: ""
     }
   ]
 export const checkboxData = [
