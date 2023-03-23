@@ -63,9 +63,8 @@ function validate(e) {
     lastName: /^[a-zA-Z]{2,}$/,
     email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
     birthdate: /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/,
-    tournamentQuantity: /^(0?[0-9]|[1-9][0-9])$/,
+    tournamentQuantity: /^0|[1-9][0-9]*$/,
   }
-
   const formObject = getValue();
 
   if (regexObject.firstName.test(formObject.firstName) === false) {
@@ -81,7 +80,7 @@ function validate(e) {
     return alert("Veuillez entrer une date de naissance valide");
   }
   if (regexObject.tournamentQuantity.test(formObject.tournamentQuantity) === false) {
-    return alert("Veuillez entrer un nombre de tournois entre 0 et 99");
+    return alert("Veuillez entrer un nombre de tournois supérieur ou égal à 0 ");
   }
   if (formObject.location1 == false
     && formObject.location2 == false
