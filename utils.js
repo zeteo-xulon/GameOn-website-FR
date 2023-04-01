@@ -31,11 +31,11 @@ export function createThis(type, classname, id, text){
  */
 export function createInput(labelFor, labelText, inputType, inputId, inputName, inputMinLength, inputRequired, inputMin, inputMax) {
     return `
-    <div class="formData">
+    <div class="formData" id="${"formData_"+inputName}">
       <label for="${labelFor}">${labelText}</label>
       <input 
       type="${inputType}" 
-      class="text-control" 
+      class="text-control error-invisible" 
       id="${inputId}" 
       name="${inputName}" 
       ${inputMinLength !== "" ? "minlength=" + inputMinLength : "" } 
@@ -43,6 +43,7 @@ export function createInput(labelFor, labelText, inputType, inputId, inputName, 
       ${inputMin !== "" ? "min=" + inputMin : "" }
       ${inputMax !== "" ? "max=" + inputMax : "" }
       />
+      <p class="error-message" id="${"error-"+inputName}"></>
     </div>
     `
   }

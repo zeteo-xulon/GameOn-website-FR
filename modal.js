@@ -53,11 +53,16 @@ function toggleNav() {
 /**
  * Launch the validation of the form when the user click on the submit button
  * It will check if the user has filled all the required fields, and if the data is valid
+ * If the form is not valid, it will display an error message in the form
+ * If the form is valid, it will display a success message in the form
+ * To double check, it will also create an array of the data entered by the user and compare it with the model from formObject
+ * Every time its wrong, it will display an error message in the form
  * @param {*} e - Event object
  * @returns  - Alert if the form is not valid or submit the form if it is
  */
 function validate(e) {
   e.preventDefault();
+
   const regexObject = {
     firstName: /^[a-zA-Z]{2,}$/,
     lastName: /^[a-zA-Z]{2,}$/,
@@ -66,36 +71,56 @@ function validate(e) {
     tournamentQuantity: /^0|[1-9][0-9]*$/,
   }
   const formObject = getValue();
+  let validInputs = [];
+  let inputIsValide = true;
+  const inputArray = [
+    { regex: regexObject.firstName, value: formObject.firstName,
+    id: "firstname", error: "Veuillez entrer 2 caractères ou plus pour le champ du nom." },
+    { regex: regexObject.lastName, value: formObject.lastName,
+    id: "lastname", error: "Veuillez entrer 2 caractères ou plus pour le champ du prénom." },
+    { regex: regexObject.email, value: formObject.email,
+    id: "email", error: "Vous devez entrer une adresse email valide." },
+    { regex: regexObject.birthdate, value: formObject.birthdate,
+    id: "birthdate", error: "Vous devez entrer votre date de naissance." },
+    { regex: regexObject.tournamentQuantity, value: formObject.tournamentQuantity,
+    id: "tournament-quantity", error: "Vous devez entrer un nombre." }];
 
-  if (regexObject.firstName.test(formObject.firstName) === false) {
-    return alert("Le prénom doit contenir au moins 2 lettres et aucun caractère spécial");
-  }
-  if (regexObject.lastName.test(formObject.lastName) === false) {
-    return alert("Le nom doit contenir au moins 2 lettres et aucun caractères spécial");
-  }
-  if (regexObject.email.test(formObject.email) === false) {
-    return alert("Veuillez entrer une adresse mail valide");
-  }
-  if (regexObject.birthdate.test(formObject.birthdate) === false) {
-    return alert("Veuillez entrer une date de naissance valide");
-  }
-  if (regexObject.tournamentQuantity.test(formObject.tournamentQuantity) === false) {
-    return alert("Veuillez entrer un nombre de tournois supérieur ou égal à 0 ");
-  }
-  if (formObject.location1 == false
-    && formObject.location2 == false
-    && formObject.location3 == false
-    && formObject.location4 == false
-    && formObject.location5 == false
-    && formObject.location6 == false) {
-    return alert("Veuillez sélectionner une ville");
-  }
+  inputArray.forEach((input) => {
+    inputIsValide = true;
+    if (input.regex.test(input.value) === false) { 
+      inputIsValide = false;
+      return displayError(input.id, input.error) 
+    } else { 
+      resetOrRemoveError(input.id)
+      validInputs.push(input.id) 
+    }
+  })
+  if (inputIsValide === false) { return }
+  let checkboxIsValide = false;
+  const checkboxArray = [ formObject.location1, formObject.location2, formObject.location3, formObject.location4, formObject.location5, formObject.location6 ];
+  checkboxArray.forEach(checkbox => checkbox ? checkboxIsValide = true : "" )
+
+  if (!checkboxIsValide) {
+    const locationContainer = document.getElementById('error-location');
+    return locationContainer.innerText = "Vous devez choisir une option.";
+  } else { 
+    const locationContainer = document.getElementById('error-location');
+    locationContainer.innerText = "" }
+
   if (formObject.checkbox1 == false) {
-    return alert("Veuillez accepter les conditions d'utilisation");
-  }
-  return displayValidatedForm();
+    const rulesContainer = document.getElementById('error-rules');
+    return rulesContainer.innerText = "Vous devez vérifier que vous acceptez les termes et conditions.";
+  } else { 
+    const rulesContainer = document.getElementById('error-rules');
+    rulesContainer.innerText = "" }
 
-}
+  // verify if all the inputs are valid before submitting the form, kind of a double check
+  if(inputIsValide && validInputs.length === inputArray.length) {
+    return displayValidatedForm();
+  } else { 
+    const errorContainer = document.getElementById('error-all');
+    return errorContainer.innerText = "Veuillez remplir tous les champs correctement." }
+  }
 /**
  * Get the value of the form and return it as an object
  * @returns {object} - Object containing the value of the form
@@ -159,6 +184,33 @@ function displayValidatedForm() {
   endContainer.appendChild(formText);
   endContainer.appendChild(closeFormBtn);
 }
+/**
+ * If the input from the form is not valid, display the error message
+ * @param {String} name  - Name of the input field
+ * @param {String} message  - Message to display
+ * @example
+ * displayError("firstname", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
+ */
+function displayError(name, message) {
+  const errorContainer = document.getElementById("error-"+name);
+  const inputContainer = document.getElementById(name);
+  inputContainer.classList.add("error-visible");
+  errorContainer.innerText = message;
+}
+/**
+ * If the input from the form is valid, reset or remove the error message
+ * @param {String} name  - Name of the input field
+ * @param {String} message  - Message to display
+ * @example
+ * resetOrRemoveError("firstname");
+*/
+function resetOrRemoveError(name) {
+  const errorContainer = document.getElementById("error-"+name);
+  const inputContainer = document.getElementById(name);
+  inputContainer.classList.remove("error-visible");
+  errorContainer.innerText = "";
+}
+
 // Early check of the website to show the navbar if the condition are fulfilled
 function launchingPageCheck(){
     showNav();
@@ -182,11 +234,12 @@ function buildForm(inputData, checkBoxData){
 
     <div class="formData">
 
-    ${checkBoxData.map((checkBox) => {
-      return` 
-        ${ createCheckbox(checkBox.inputId, checkBox.inputValue, checkBox.labelFor, checkBox.labelText) } `}
-    ).join('')}
+      ${checkBoxData.map((checkBox) => {
+        return` 
+          ${ createCheckbox(checkBox.inputId, checkBox.inputValue, checkBox.labelFor, checkBox.labelText) } `}
+      ).join('')}
   
+      <p class="error-message" id="error-location"></p>
     </div>
 
     <div
@@ -196,13 +249,14 @@ function buildForm(inputData, checkBoxData){
         <span class="checkbox-icon"></span>
         J'ai lu et accepté les conditions d'utilisation.
       </label>
+      <p class="error-message" id="error-rules"></p>
       
       <input class="checkbox-input" type="checkbox" id="checkbox2" />
       <label class="checkbox2-label" for="checkbox2">
         <span class="checkbox-icon"></span>
         Je Je souhaite être prévenu des prochains évènements.
       </label>
-      
+      <p class="error-message" id="error-all"></p>
     </div>
 
     <input class="btn-submit button" type="submit" value="C'est parti" />
