@@ -132,16 +132,18 @@ main {
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: scroll;
   position: relative;
   color: #fff;
-  padding-top: 10px;
+  padding: 10px 0px;
 }
 
 .modal-body {
+  display: flex;
+  align-items: center;
   padding: 15px 8%;
   margin: 15px auto;
-  height: 100%;
+  min-height: 100%;
 }
 
 label {
