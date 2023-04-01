@@ -566,3 +566,13 @@ footer {
 .invisible{
   display: none;
 }
+.error-message{
+  font-size: .7rem;
+  color:#f00;
+}
+.error-invisible{
+  border: none;
+}
+.error-visible{
+  border:2px solid #f00;
+}
